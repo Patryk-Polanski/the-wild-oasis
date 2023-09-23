@@ -10,7 +10,6 @@ export function useLogin() {
   const { mutate: login, isLoading } = useMutation({
     mutationFn: ({ email, password }) => loginApi({ email, password }),
     onSuccess: (user) => {
-      console.log('user', user);
       // (optional) allows us to manually set data into React Query cash, which can make things faster when loading data
       queryClient.setQueryData(['user'], user.user);
       navigate('/dashboard', { replace: true });

@@ -24,8 +24,6 @@ export async function getCurrentUser() {
 
   const { data, error } = await supabase.auth.getUser();
 
-  console.log('current user', data);
-
   if (error) throw new Error(error.message);
 
   return data?.user;

@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 export function useLogin() {
+  // const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { mutate: login, isLoading } = useMutation({
     mutationFn: ({ email, password }) => loginApi({ email, password }),
     onSuccess: (user) => {
       console.log('user', user);
+      // (optional) allows us to manually set data into React Query cash, which can make things faster when loading data
+      // queryClient.setQueryData(['user'], user);
       navigate('/dashboard');
     },
     onError: (err) => {
